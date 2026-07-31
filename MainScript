@@ -1,0 +1,41 @@
+local UIGRADIENT_OFFSET_PROP = 320
+local playername = game:GetService("Players").LocalPlayer.Name
+local function checkYourCondition()
+    local gradient = game:GetService("Workspace").Characters:FindFirstChild(playername).HumanoidRootPart.VerticalMeter.Meter_Fill:FindFirstChildOfClass("UIGradient")
+    
+     if gradient and gradient.Address then
+        local cppInstanceAddress = gradient.Address
+        
+        if cppInstanceAddress ~= 0 then
+            local yAddress = cppInstanceAddress + UIGRADIENT_OFFSET_PROP + 4
+            local currentOffsetY = memory_read("float", yAddress)
+            if currentOffsetY >= -1.37 and currentOffsetY <= -1.32 then
+                return true
+            end
+        end
+    end
+    
+    return false
+end
+
+local function greenchecker()
+    AlreadyPressing = true
+    
+    repeat
+        task.wait() 
+    until checkYourCondition() == true or _G.AutoGreen == false
+    
+    keyrelease(0x45)
+    AlreadyPressing = false  
+end
+
+_G.AutoGreen = true
+local AlreadyPressing = false
+
+while _G.AutoGreen == true do
+    if iskeypressed(0x45) and not AlreadyPressing then
+        greenchecker()       
+    end 
+
+    task.wait(0.1) 
+end

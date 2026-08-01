@@ -1,5 +1,8 @@
 local UIGRADIENT_OFFSET_PROP = 320
 local playername = game:GetService("Players").LocalPlayer.Name
+
+setrobloxinput(true)
+
 local function checkYourCondition()
     local gradient = game:GetService("Workspace").Characters:FindFirstChild(playername).HumanoidRootPart.VerticalMeter.Meter_Fill:FindFirstChildOfClass("UIGradient")
     

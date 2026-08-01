@@ -9,7 +9,7 @@ local function checkYourCondition()
         if cppInstanceAddress ~= 0 then
             local yAddress = cppInstanceAddress + UIGRADIENT_OFFSET_PROP + 4
             local currentOffsetY = memory_read("float", yAddress)
-            if currentOffsetY >= -1.37 and currentOffsetY <= -1.32 then
+            if currentOffsetY >= -1.35 and currentOffsetY <= -1.30 then
                 return true
             end
         end
